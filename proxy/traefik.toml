@@ -1,0 +1,22 @@
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+  [entryPoints.dash]
+  address = ":8081"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+
+[acme]
+email = "daemonsoft@gmail.com"
+storage = "acme.json"
+caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+entryPoint = "https"
+  [acme.httpChallenge]
+  entryPoint = "http"
+
+[[acme.domains]]
+  main = "curso.daemonsoft.tk"
+
+[api]
+entryPoint = "dash"
