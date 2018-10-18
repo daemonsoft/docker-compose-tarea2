@@ -12,6 +12,7 @@ import domain.services.buildingattendantutil.BuildingCalendar;
 import domain.services.buildingattendantutil.implementation.BuildingCalendarImplementation;
 import domain.services.implementation.BuildingAttendantServiceImplementation;
 import domain.services.implementation.BuildingManagerServiceImplementation;
+import infrastructure.database.localmemory.LocalMemoryRepository;
 import infrastructure.database.mysql.MySqlConnectionDB;
 /**
  * This class is a Guice module that tells Guice how to bind several
@@ -37,7 +38,7 @@ public class Module extends AbstractModule {
 
         bind(BuildingCalendar.class).to(BuildingCalendarImplementation.class);
 
-        bind(BuildingRepository.class).to(MySqlConnectionDB.class);
+        bind(BuildingRepository.class).to(LocalMemoryRepository.class);
 
     }
 
