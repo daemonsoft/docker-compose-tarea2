@@ -39,7 +39,7 @@ services:
   front:
     build: front/.
     ports:
-    - "80:4200"
+    - "4200:4200"
     volumes:
     - .:/code
     - logvolume01:/var/log
