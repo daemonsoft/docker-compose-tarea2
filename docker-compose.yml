@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+  
   reverse-proxy:
     image: traefik:v1.7.3-alpine # The official Traefik docker image
     command: --api --docker # Enables the web UI and tells Træfik to listen to docker
@@ -10,16 +11,39 @@ services:
       - "8081:8081" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
-#   web:
-#     build: .
-#     ports:
-#     - "5000:5000"
-#     volumes:
-#     - .:/code
-#     - logvolume01:/var/log
-#     links:
-#     - redis
-#   mysql:
-#     image: redis
-# volumes:
-#   logvolume01: {}
+    networks: 
+      front_net:
+
+  db:
+    image: mysql:8.0.12
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: thisisapass
+    networks: 
+      back_net:
+
+  front:
+    build: front/.
+    ports:
+    - "5000:5000"
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    networks: 
+      front_net:
+
+  back:
+    build: back/.
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    networks: 
+      front_net:
+      back_net:
+
+volumes:
+  logvolume01: {}
+
+networks:
+  front_net:
+  back_net:
