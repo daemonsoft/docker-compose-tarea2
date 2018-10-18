@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  
+
   reverse-proxy:
     image: traefik:v1.7.3-alpine # The official Traefik docker image
     command: --api --docker # Enables the web UI and tells Træfik to listen to docker
@@ -22,6 +22,15 @@ services:
     networks: 
       back_net:
 
+  back:
+    build: back/.
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    networks: 
+      front_net:
+      back_net:
+
   front:
     build: front/.
     ports:
@@ -31,15 +40,6 @@ services:
     - logvolume01:/var/log
     networks: 
       front_net:
-
-  back:
-    build: back/.
-    volumes:
-    - .:/code
-    - logvolume01:/var/log
-    networks: 
-      front_net:
-      back_net:
 
 volumes:
   logvolume01: {}
