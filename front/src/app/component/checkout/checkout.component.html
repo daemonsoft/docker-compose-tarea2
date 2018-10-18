@@ -1,0 +1,31 @@
+<div class="form-group">
+  <label for="buildingId">Building Id</label>
+  <input type="text" (change)="onKeyBuildingId($event)" #buildingId class="form-control" id="buildingId" aria-describedby="help" placeholder="Enter Building Id" required>
+</div>
+<div class="form-group">
+  <label for="tenantId">Tenant Id</label>
+  <input type="text" (change)="onKeyTenantId($event)" class="form-control" id="tenantId" #tenantId aria-describedby="help" placeholder="Enter Tenant Id" required>
+</div>
+<button type="submit" class="btn btn-primary" (click)="validateData(buildingId.value, tenantId.value)">Check Out</button>
+<br>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document" [ngStyle]="{'display':display}">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Confirmation message</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Building Id: <strong>{{buildingId}}</strong></p>
+      <p>Tenant Id: <strong>{{tenantId}}</strong></p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="checkOutClick()">Save</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+  </div>
+  </div>

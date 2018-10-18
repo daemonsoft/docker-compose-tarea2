@@ -1,0 +1,12 @@
+<table class="table table-responsive table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Tenant Id</th>
+    <th scope="col">Tenant Name</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let tenant of tenants">
+      <td scope="row">{{ tenant.tenantId }}</td>
+      <td>{{ tenant.tenantName }}</td>
+  </tr>
+</table>

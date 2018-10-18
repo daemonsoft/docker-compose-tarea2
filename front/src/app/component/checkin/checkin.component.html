@@ -1,0 +1,46 @@
+<div class="form-group">
+  <label for="buildingId">Building Id</label>
+  <input type="text" (change)="onKeyBuildingId($event)" #buildingId class="form-control" id="buildingId" aria-describedby="help" placeholder="Enter Building Id" required>
+</div>
+<div class="form-group">
+  <label for="buildingName">Building Name</label>
+  <input type="text" (change)="onKeyBuildingName($event)" class="form-control" id="buildingName" #buildingName aria-describedby="help" placeholder="Enter Building Name" required>
+</div>
+<div class="form-group">
+  <label for="tenantId">Tenant Id</label>
+  <input type="text" (change)="onKeyTenantId($event)" class="form-control" id="tenantId" #tenantId aria-describedby="help" placeholder="Enter Tenant Id" required>
+</div>
+<div class="form-group">
+  <label for="tenantName">Tenant Name</label>
+  <input type="text" (change)="onKeyTenantName($event)" class="form-control" id="tenantName" #tenantName aria-describedby="help" placeholder="Enter Tenant Name" required>
+</div>
+<div class="form-group">
+  <label for="tenantAge">Tenant Age</label>
+  <input type="number" (change)="onKeyTenantAge($event)" class="form-control" id="tenantAge" #tenantAge aria-describedby="help" placeholder="Enter Tenant Age" required>
+</div>
+<button type="submit" class="btn btn-primary" (click)="validateData(buildingId.value, buildingName.value, tenantId.value, tenantName.value, tenantAge.value)">Check In</button>
+<br/>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+<div class="modal-dialog" role="document" [ngStyle]="{'display':display}">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Confirmation message</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Building Id: <strong>{{buildingId}}</strong></p>
+    <p>Building Name: <strong>{{buildingName}}</strong></p>
+    <p>Tenant Id: <strong>{{tenantId}}</strong></p>
+    <p>Tenant Name: <strong>{{tenantName}}</strong></p>
+    <p>Tenant Age: <strong>{{tenantAge}}</strong></p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="checkInClick()">Save</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+  </div>
+</div>
+</div>
+</div>
