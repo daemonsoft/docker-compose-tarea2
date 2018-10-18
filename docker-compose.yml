@@ -16,6 +16,8 @@ services:
 
   db:
     image: mysql:8.0.12
+    ports:
+    - "3306:3306"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: thisisapass
@@ -24,6 +26,9 @@ services:
 
   back:
     build: back/.
+    ports:
+    - "9000:9000"
+    - "9443:9443"
     volumes:
     - .:/code
     - logvolume01:/var/log
@@ -34,7 +39,7 @@ services:
   front:
     build: front/.
     ports:
-    - "5000:5000"
+    - "80:4200"
     volumes:
     - .:/code
     - logvolume01:/var/log
