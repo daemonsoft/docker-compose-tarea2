@@ -7,17 +7,17 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-  reverse-proxy:
-    image: traefik:v1.7.3-alpine # The official Traefik docker image
-    command: --api --docker # Enables the web UI and tells Træfik to listen to docker
-    ports:
-      - "8000:8000"     # The HTTP port
-      - "443:443"   # https port
-      - "8081:8081" # The Web UI (enabled by --api)
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
-    networks: 
-      front_net:
+  # reverse-proxy:
+  #   image: traefik:v1.7.3-alpine # The official Traefik docker image
+  #   command: --api --docker # Enables the web UI and tells Træfik to listen to docker
+  #   ports:
+  #     - "8000:8000"     # The HTTP port
+  #     - "443:443"   # https port
+  #     - "8081:8081" # The Web UI (enabled by --api)
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+  #   networks: 
+  #     front_net:
 
   db:
     image: mysql:8.0.12
