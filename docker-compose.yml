@@ -11,14 +11,13 @@ services:
     image: traefik:v1.7.3-alpine # The official Traefik docker image
     command: --api --docker # Enables the web UI and tells Træfik to listen to docker
     ports:
-      - "80:4200"     # The HTTP port
+      - "8000:8000"     # The HTTP port
       - "443:443"   # https port
       - "8081:8081" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
     networks: 
       front_net:
-      bridge:
 
   db:
     image: mysql:8.0.12
@@ -45,7 +44,8 @@ services:
   front:
     build: front/.
     ports:
-    - "4200:4200"
+      - target: 4200
+        published: 80
     volumes:
     - .:/code
     - logvolume01:/var/log
@@ -58,4 +58,3 @@ volumes:
 networks:
   front_net:
   back_net:
-  bridge:
