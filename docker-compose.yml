@@ -19,27 +19,27 @@ services:
   #   networks: 
   #     front_net:
 
-  db:
-    image: mysql:8.0.12
-    ports:
-    - "3306:3306"
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: thisisapass
-    networks: 
-      back_net:
+  # db:
+  #   image: mysql:8.0.12
+  #   ports:
+  #   - "3306:3306"
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: thisisapass
+  #   networks: 
+  #     back_net:
 
-  back:
-    build: back/.
-    ports:
-    - "9000:9000"
-    - "9443:9443"
-    volumes:
-    - .:/code
-    - logvolume01:/var/log
-    networks: 
-      front_net:
-      back_net:
+  # back:
+  #   build: back/.
+  #   ports:
+  #   - "9000:9000"
+  #   - "9443:9443"
+  #   volumes:
+  #   - .:/code
+  #   - logvolume01:/var/log
+  #   networks: 
+  #     front_net:
+  #     back_net:
 
   front:
     build: front/.
@@ -49,12 +49,12 @@ services:
     volumes:
     - .:/code
     - logvolume01:/var/log
-    networks: 
-      front_net:
+#     networks: 
+#       front_net:
 
-volumes:
-  logvolume01: {}
+# volumes:
+#   logvolume01: {}
 
-networks:
-  front_net:
-  back_net:
+# networks:
+#   front_net:
+#   back_net:
