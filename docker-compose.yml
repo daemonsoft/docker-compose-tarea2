@@ -18,6 +18,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
     networks: 
       front_net:
+      bridge:
 
   db:
     image: mysql:8.0.12
