@@ -45,7 +45,7 @@ services:
     build: front/.
     ports:
       - target: 4200
-        published: 80
+        published: 4200
     # volumes:
     # - .:/code
     # - logvolume01:/var/log
