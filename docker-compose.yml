@@ -11,10 +11,9 @@ services:
     image: traefik:v1.7.3-alpine # The official Traefik docker image
     command: --api --docker # Enables the web UI and tells Træfik to listen to docker
     ports:
-      - "80:80"     # The HTTP port
+      - "80:4200"     # The HTTP port
       - "443:443"   # https port
       - "8081:8081" # The Web UI (enabled by --api)
-      - "4200:4200"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
     networks: 
