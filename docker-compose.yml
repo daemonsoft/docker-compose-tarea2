@@ -46,9 +46,9 @@ services:
     ports:
       - target: 4200
         published: 80
-    volumes:
-    - .:/code
-    - logvolume01:/var/log
+    # volumes:
+    # - .:/code
+    # - logvolume01:/var/log
 #     networks: 
 #       front_net:
 
