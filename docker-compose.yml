@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3'
 
 services:
   
@@ -44,8 +44,7 @@ services:
   front:
     build: front/.
     ports:
-      - target: 4200
-        published: 4200
+      - "4200:4200"
     # volumes:
     # - .:/code
     # - logvolume01:/var/log
