@@ -2,58 +2,57 @@ version: '3'
 
 services:
   
-  # log:
-  #   image: gliderlabs/logspout:v3.2.6
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
+  log:
+    image: gliderlabs/logspout:v3.2.6
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
-  # reverse-proxy:
-  #   image: traefik:v1.7.3-alpine # The official Traefik docker image
-  #   command: --api --docker # Enables the web UI and tells Træfik to listen to docker
-  #   ports:
-  #     - "8000:8000"     # The HTTP port
-  #     - "443:443"   # https port
-  #     - "8081:8081" # The Web UI (enabled by --api)
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
-  #   networks: 
-  #     front_net:
+  reverse-proxy:
+    image: traefik:v1.7.3-alpine # The official Traefik docker image
+    command: --api --docker # Enables the web UI and tells Træfik to listen to docker
+    ports:
+      - "8000:8000"     # The HTTP port
+      - "443:443"   # https port
+      - "8081:8081" # The Web UI (enabled by --api)
+      - "80:4200"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+    networks: 
+      front_net:
 
-  # db:
-  #   image: mysql:8.0.12
-  #   ports:
-  #   - "3306:3306"
-  #   restart: always
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: thisisapass
-  #   networks: 
-  #     back_net:
+  db:
+    image: mysql:8.0.12
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: thisisapass
+    networks: 
+      back_net:
 
-  # back:
-  #   build: back/.
-  #   ports:
-  #   - "9000:9000"
-  #   - "9443:9443"
-  #   volumes:
-  #   - .:/code
-  #   - logvolume01:/var/log
-  #   networks: 
-  #     front_net:
-  #     back_net:
+  back:
+    build: back/.
+    ports:
+    - "9000:9000"
+    - "9443:9443"
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    networks: 
+      front_net:
+      back_net:
 
   front:
     build: front/.
     ports:
       - "4200:4200"
-    # volumes:
-    # - .:/code
-    # - logvolume01:/var/log
-#     networks: 
-#       front_net:
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    networks: 
+      front_net:
 
-# volumes:
-#   logvolume01: {}
+volumes:
+  logvolume01: {}
 
-# networks:
-#   front_net:
-#   back_net:
+networks:
+  front_net:
+  back_net:
