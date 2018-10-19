@@ -2,9 +2,9 @@ version: '3'
 
 services:
 
-  logs:
+  log:
     image: gliderlabs/logspout:v3.2.6
-	  volumes: 
+	  volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
   reverse-proxy:
