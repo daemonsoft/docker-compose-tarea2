@@ -14,6 +14,7 @@ services:
       - "80:80"     # The HTTP port
       - "443:443"   # https port
       - "8081:8081" # The Web UI (enabled by --api)
+      - "4200:4200"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
     networks: 
