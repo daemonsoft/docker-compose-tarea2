@@ -5,19 +5,23 @@ import java.time.LocalDate;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Tenant {
-    private String id;
+    private Long id;
     private String name;
     private Integer age;
     private LocalDate entryDate;
 
-    private Tenant(String id, String name, Integer age, LocalDate entryDate) {
+    private Tenant(Long id) {
+        this.id = id;
+    }
+
+    private Tenant(Long id, String name, Integer age, LocalDate entryDate) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.entryDate = entryDate;
     }
 
-    public static Tenant of(String id, String name, Integer age, LocalDate entryDate) {
+    public static Tenant of(Long id, String name, Integer age, LocalDate entryDate) {
         checkNotNull(id); // IllegalStateException
         checkNotNull(name);
         checkNotNull(age);
@@ -25,7 +29,11 @@ public class Tenant {
         return new Tenant(id, name, age, entryDate);
     }
 
-    public String getId() {
+    public static Tenant of(Long id) {
+        return new Tenant(id);
+    }
+
+    public Long getId() {
         return id;
     }
 

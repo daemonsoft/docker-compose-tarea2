@@ -1,5 +1,5 @@
 package infrastructure.database.h2.jdbi;
-
+/*
 import domain.entity.Building;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.BindBean;
@@ -27,3 +27,4 @@ public interface BuildingDao extends AutoCloseable {
     void close();
 
 }
+*/

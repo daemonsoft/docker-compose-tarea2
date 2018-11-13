@@ -2,15 +2,15 @@ package application.responsemodel;
 
 public class GetTenantResponse {
 
-    private String tenantId;
+    private Long tenantId;
     private String tenantName;
 
-    public GetTenantResponse(String tenantId, String tenantName) {
+    public GetTenantResponse(Long tenantId, String tenantName) {
         this.tenantId = tenantId;
         this.tenantName = tenantName;
     }
 
-    public String getTenantId() {
+    public Long getTenantId() {
         return tenantId;
     }
 
@@ -18,7 +18,7 @@ public class GetTenantResponse {
         return tenantName;
     }
 
-    public void setTenantId(String tenantId) {
+    public void setTenantId(Long tenantId) {
         this.tenantId = tenantId;
     }
 

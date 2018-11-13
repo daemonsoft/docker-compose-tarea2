@@ -1,5 +1,5 @@
 package infrastructure.database.h2.jdbi;
-
+/*
 import java.util.List;
 
 import domain.entity.Tenant;
@@ -25,3 +25,4 @@ public interface TenantDao extends AutoCloseable {
 
     void close();
 }
+*/

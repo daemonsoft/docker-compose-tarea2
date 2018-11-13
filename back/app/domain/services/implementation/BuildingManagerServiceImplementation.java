@@ -18,7 +18,7 @@ public class BuildingManagerServiceImplementation implements BuildingManagerServ
         this.buildingRepository = buildingRepository;
     }
 
-    public Optional<Building> getBuilding(String buildingId) {
+    public Optional<Building> getBuilding(Long buildingId) {
         return buildingRepository.findById(buildingId);
     }
 }

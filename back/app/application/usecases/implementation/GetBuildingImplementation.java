@@ -25,10 +25,9 @@ public class GetBuildingImplementation implements GetBuilding {
         this.buildingManager = buildingManager;
     }
 
-    public GetBuildingResponse execute(String buildingId) throws BaseException {
+    public GetBuildingResponse execute(Long buildingId) throws BaseException {
         Optional<Building> building = buildingManager.getBuilding(buildingId);
         if (!building.isPresent()) {
-            System.out.println("----------------Alv----------------");
             throw new IllegalArgumentException();
         }
         List<GetTenantResponse> tenants = building.get().getTenants().stream().map(this::toResponseModel).collect(toList());

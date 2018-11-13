@@ -9,13 +9,16 @@ import static com.google.common.base.Preconditions.checkNotNull;
 @Immutable
 public class EnterTenantRequest {
 
-    private final String buildingId;
-    private final String buildingName;
-    private final String tenantId;
-    private final String tenantName;
-    private final Integer tenantAge;
+    private Long buildingId;
+    private String buildingName;
+    private Long tenantId;
+    private String tenantName;
+    private Integer tenantAge;
 
-    private EnterTenantRequest(String buildingId, String buildingName, String tenantId, String tenantName, Integer tenantAge) {
+    public EnterTenantRequest() {
+    }
+
+    private EnterTenantRequest(Long buildingId, String buildingName, Long tenantId, String tenantName, Integer tenantAge) {
         this.buildingId = buildingId;
         this.buildingName = buildingName;
         this.tenantId = tenantId;
@@ -23,7 +26,7 @@ public class EnterTenantRequest {
         this.tenantAge = tenantAge;
     }
 
-    public static EnterTenantRequest of(String buildingId, String buildingName, String tenantId, String tenantName, Integer tenantAge) {
+    public static EnterTenantRequest of(Long buildingId, String buildingName, Long tenantId, String tenantName, Integer tenantAge) {
         checkNotNull(buildingId);
         checkNotNull(tenantId);
         checkNotNull(tenantName);
@@ -31,7 +34,7 @@ public class EnterTenantRequest {
         return new EnterTenantRequest(buildingId, buildingName, tenantId, tenantName, tenantAge);
     }
 
-    public String getBuildingId() {
+    public Long getBuildingId() {
         return buildingId;
     }
 
@@ -39,7 +42,7 @@ public class EnterTenantRequest {
         return buildingName;
     }
 
-    public String getTenantId() {
+    public Long getTenantId() {
         return tenantId;
     }
 

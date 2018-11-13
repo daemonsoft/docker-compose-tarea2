@@ -39,29 +39,20 @@ public class BuildingAttendantRestController extends Controller {
         return CompletableFuture.completedFuture(ok("42"));
     }
 
-    public CompletionStage<Result> getById(String buildingId) throws BaseException {
+    public CompletionStage<Result> getById(Long buildingId) throws BaseException {
         return CompletableFuture.completedFuture(ok(Json.toJson(getBuilding.execute(buildingId))));
     }
 
-    public CompletionStage<Result> enterTenant() throws BaseException, IOException {
+    public CompletionStage<Result> enterTenant() throws BaseException {
         JsonNode json = request().body().asJson();
-        EnterTenantRequest enterTenantRequest = EnterTenantRequest.of(
-                json.get("buildingId").asText(),
-                json.get("buildingName").asText(),
-                json.get("tenantId").asText(),
-                json.get("tenantName").asText(),
-                json.get("tenantAge").asInt());
-        // enterTenantRequest = Json.fromJson(json, EnterTenantRequest.class);
+        EnterTenantRequest enterTenantRequest = Json.fromJson(json, EnterTenantRequest.class);
         enterTenant.execute(enterTenantRequest);
         return CompletableFuture.completedFuture(created("Hosted tenant"));
     }
 
     public CompletionStage<Result> evictTenant() {
         JsonNode json = request().body().asJson();
-        EvictTenantRequest evictTenantRequest = EvictTenantRequest.of(
-                json.get("buildingId").asText(),
-                json.get("tenantId").asText()
-        );
+        EvictTenantRequest evictTenantRequest = Json.fromJson(json, EvictTenantRequest.class);;
         evictTenant.execute(evictTenantRequest);
         return CompletableFuture.completedFuture(Results.ok("Tenant evicted"));
     }

@@ -20,13 +20,19 @@ public class LocalMemoryRepository implements BuildingRepository {
     }
 
     @Override
-    public Optional<Building> findById(String id) {
+    public Optional<Building> findById(Long id) {
         for (Building building : buildings) {
-            if (building.getId().equalsIgnoreCase(id)) {
+            if (building.getId().equals(id)) {
                 System.out.println("building found");
                 return Optional.ofNullable(building);
             }
         }
         return Optional.empty();
     }
+
+    @Override
+    public void remove(Long tenantId) {
+
+    }
+
 }

@@ -1,19 +1,19 @@
  interface Building {
-	buildingId: string;
+	buildingId: number;
 	buildingName: string;
-	tenantId: string;
+	tenantId: number;
 	tenantName: string;
 	tenantAge: number;
 }
 
 class BuildingClass implements Building {
-	buildingId: string;
+	buildingId: number;
 	buildingName: string;
-	tenantId: string;
+	tenantId: number;
 	tenantName: string;
 	tenantAge: number;
 
-	constructor(buildingId: string, buildingName: string, tenantId: string, tenantName: string, tenantAge: number) {
+	constructor(buildingId: number, buildingName: string, tenantId: number, tenantName: string, tenantAge: number) {
 		this.buildingId = buildingId;
 		this.buildingName = buildingName;
 		this.tenantId = tenantId;

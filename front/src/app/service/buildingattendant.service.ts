@@ -19,12 +19,12 @@ export class BuildingattendantService {
     return this.httpClient.post(this.url, JSON.stringify(building), { headers: headers }); 
   }
 
-  checkOut(buildingId: string, tenantId: string) {  
+  checkOut(buildingId: number, tenantId: string) {  
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.put(this.url, JSON.stringify({"buildingId": buildingId, "tenantId": tenantId}), { headers: headers }); 
   }
 
-  getOne(buildingId: string) {  
+  getOne(buildingId: number) {  
     return this.httpClient.get(this.url+"/"+buildingId);
   }
 }

@@ -10,9 +10,9 @@ import { Building, BuildingClass } from '../../model/building.model';
 })
 export class CheckinComponent implements OnInit {
 
-  buildingId: string = "";
+  buildingId: number = 0;
   buildingName: string = "";
-  tenantId: string = "";
+  tenantId: number = 0;
   tenantName: string = "";
   tenantAge: number = 0;
 
@@ -26,9 +26,9 @@ export class CheckinComponent implements OnInit {
   }
 
   validateData(buildingIdInput, buildingNameInput, tenantIdInput, tenantNameInput, tenantAgeInput) {
-    this.buildingId = buildingIdInput.toUpperCase();
+    this.buildingId = buildingIdInput;
     this.buildingName = buildingNameInput.toUpperCase();
-    this.tenantId = tenantIdInput.toUpperCase();
+    this.tenantId = tenantIdInput;
     this.tenantName = tenantNameInput.toUpperCase();
     this.tenantAge = tenantAgeInput;
     this.openModal();
@@ -37,8 +37,8 @@ export class CheckinComponent implements OnInit {
   checkInClick() {
     this.building = new BuildingClass(this.buildingId, this.buildingName, this.tenantId, this.tenantName, this.tenantAge);
     this.buildingattendantService.checkIn(this.building).subscribe(
-      checkInResponse => {
-        this.router.navigate(['current']);
+      () => {
+        this.router.navigate(['current'], { queryParams: { buildingId: this.buildingId } });
         this.closeModal();
       },
       (error) => {
@@ -46,8 +46,7 @@ export class CheckinComponent implements OnInit {
           console.log("ERROR......");
           this.closeModal();
         }
-        
-        this.router.navigate(['current']);
+        this.router.navigate(['current'], { queryParams: { buildingId: this.buildingId } });
         this.closeModal();
       });
   }

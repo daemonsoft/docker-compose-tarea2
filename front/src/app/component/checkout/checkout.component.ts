@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
-  buildingId: string = "";
+  buildingId: number = 0;
   tenantId: string = "";
 
   display = 'none';
@@ -35,9 +35,8 @@ export class CheckoutComponent implements OnInit {
         if (error.status !== 201) {          
           console.log("ERROR......");
           this.closeModal();
-        }
-        
-        this.router.navigate(['current']);
+        }        
+        this.router.navigate(['checkin']);
         this.closeModal();
       });
   }

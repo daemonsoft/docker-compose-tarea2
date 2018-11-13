@@ -9,25 +9,28 @@ import static com.google.common.base.Preconditions.checkNotNull;
 @Immutable
 public class EvictTenantRequest {
 
-    private final String buildingId;
-    private final String tenantId;
+    private Long buildingId;
+    private Long tenantId;
 
-    private EvictTenantRequest(String buildingId, String tenantId) {
+    public EvictTenantRequest() {
+    }
+
+    private EvictTenantRequest(Long buildingId, Long tenantId) {
         this.buildingId = buildingId;
         this.tenantId = tenantId;
     }
 
-    public static EvictTenantRequest of(String buildingId, String tenantId) {
+    public static EvictTenantRequest of(Long buildingId, Long tenantId) {
         checkNotNull(buildingId);
         checkNotNull(tenantId);
         return new EvictTenantRequest(buildingId, tenantId);
     }
 
-    public String getBuildingId() {
+    public Long getBuildingId() {
         return buildingId;
     }
 
-    public String getTenantId() {
+    public Long getTenantId() {
         return tenantId;
     }
 

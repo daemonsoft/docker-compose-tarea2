@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface BuildingAttendantService {
 
-    Optional<Building> checkIn(String buildingId, String buildingName, String tenantId, String tenantName, Integer tenantAge) throws BaseException;
+    Optional<Building> checkIn(Long buildingId, String buildingName, Long tenantId, String tenantName, Integer tenantAge) throws BaseException;
 
-    Optional<Building> checkOut(String buildingId, String tenantId);
+    void checkOut(Long buildingId, Long tenantId);
 
 }

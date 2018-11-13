@@ -8,26 +8,34 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Building {
-    private String id;
+    private Long id;
     private String name;
     private List<Tenant> tenants;
 
-    private Building(String id, String name, List<Tenant> tenants) {
+    private Building(Long id, String name, List<Tenant> tenants) {
         this.id = id;
         this.name = name;
         this.tenants = tenants;
     }
 
-    public static Builder builder(String id, String name) {
+    public static Builder builder(Long id) {
+        return new Builder(id);
+    }
+
+    public static Builder builder(Long id, String name) {
         return new Builder(id, name);
     }
 
     public static class Builder {
-        private String id;
+        private Long id;
         private String name;
         private List<Tenant> tenants = new ArrayList<>();
 
-        private Builder(String id, String name) {
+        private Builder(Long id) {
+            this.id = id;
+        }
+
+        private Builder(Long id, String name) {
             this.id = id;
             this.name = name;
         }
@@ -40,12 +48,11 @@ public class Building {
 
         public Building build() {
             checkNotNull(id);
-            checkNotNull(name);
             return new Building(id, name, tenants);
         }
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -61,7 +68,7 @@ public class Building {
         this.tenants.add(tenant);
     }
 
-    public Boolean evictTenant(String tenantId) {
-        return this.tenants.removeIf(it -> it.getId().equals(tenantId));
+    public Boolean evictTenant(Long tenantId) {
+        return this.tenants.removeIf(idTenant -> idTenant.getId().equals(tenantId));
     }
 }

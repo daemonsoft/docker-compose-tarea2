@@ -16,13 +16,13 @@ public class InvalidDayValidation implements BuildingAttendantValidation {
     }
 
     public void execute(Building building) throws InvalidDayException {
-        if(isBuildingIdStartingWithM(building.getId()) && buildingCalendar.isSundayToday()) {
+        if(isBuildingId2Or4(building.getId()) && buildingCalendar.isSaturdayToday()) {
             throw new InvalidDayException();
         }
     }
 
-    private Boolean isBuildingIdStartingWithM(String buildingId) {
-        return buildingId.startsWith("M") || buildingId.startsWith("m");
+    private Boolean isBuildingId2Or4(Long buildingId) {
+        return buildingId == 2 || buildingId == 4;
     }
 
 }

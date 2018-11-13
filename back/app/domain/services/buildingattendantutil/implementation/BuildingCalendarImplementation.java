@@ -7,9 +7,9 @@ import java.time.LocalDate;
 
 public class BuildingCalendarImplementation implements BuildingCalendar {
 
-    public Boolean isSundayToday() {
+    public Boolean isSaturdayToday() {
         DayOfWeek dayOfWeek = getCurrentDate().getDayOfWeek();
-        return dayOfWeek == DayOfWeek.SUNDAY;
+        return dayOfWeek == DayOfWeek.SATURDAY;
     }
 
     public LocalDate getCurrentDate() {

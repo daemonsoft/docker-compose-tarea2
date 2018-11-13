@@ -38,7 +38,7 @@ public class Module extends AbstractModule {
 
         bind(BuildingCalendar.class).to(BuildingCalendarImplementation.class);
 
-        bind(BuildingRepository.class).to(LocalMemoryRepository.class);
+        bind(BuildingRepository.class).to(MySqlConnectionDB.class);
 
     }
 

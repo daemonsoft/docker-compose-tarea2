@@ -1,5 +1,6 @@
 package infrastructure.database.h2;
 
+/*
 import domain.entity.Building;
 import domain.entity.Tenant;
 import domain.repository.BuildingRepository;
@@ -17,7 +18,6 @@ import java.util.Optional;
 
 @Singleton
 public class JdbcBuildingRepository implements BuildingRepository {
-
     private DBI dbi;
     private DatabaseExecutionContext executionContext;
 
@@ -43,7 +43,7 @@ public class JdbcBuildingRepository implements BuildingRepository {
         }
     }
 
-    public Optional<Building> findById(String buildingId) {
+    public Optional<Building> findById(Long buildingId) {
         try(BuildingDao buildingDao = dbi.open(BuildingDao.class)) {
             final Building building = buildingDao.findById(buildingId);
             if (building != null) {
@@ -89,3 +89,4 @@ public class JdbcBuildingRepository implements BuildingRepository {
         }
     }
 }
+*/

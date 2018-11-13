@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public interface BuildingCalendar {
 
-    Boolean isSundayToday();
+    Boolean isSaturdayToday();
 
     LocalDate getCurrentDate();
 

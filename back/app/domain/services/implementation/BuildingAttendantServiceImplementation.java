@@ -12,6 +12,8 @@ import domain.services.buildingattendantvalidation.BuildingAttendantValidation;
 import domain.services.buildingattendantvalidation.implementation.InvalidDayValidation;
 import domain.services.buildingattendantvalidation.implementation.LegalAgeValidation;
 
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,32 +38,25 @@ public class BuildingAttendantServiceImplementation implements BuildingAttendant
         //this.entryValidations = entryValidations;
     }
 
-    public Optional<Building> checkIn(String buildingId, String buildingName, String tenantId, String tenantName, Integer tenantAge) throws BaseException {
+    public Optional<Building> checkIn(Long buildingId, String buildingName, Long tenantId, String tenantName, Integer tenantAge) throws BaseException {
         validateBuildingAndTenantId(buildingId, tenantId);
-        Optional<Building> building = buildingRepository.findById(buildingId);
-        if (!building.isPresent()) {
-            Building newBuilding = Building.builder(buildingId, buildingName).build();
-            building = Optional.of(newBuilding);
-            //throw new IllegalArgumentException();
-        }
-        invalidDayValidation.execute(building.get());
-        legalAgeValidation.execute(building.get());
+        Building building = Building.builder(buildingId, buildingName).build();
+        Tenant tenant = Tenant.of(tenantId, tenantName, tenantAge, buildingCalendar.getCurrentDate());
+        building.addTenant(tenant);
+        invalidDayValidation.execute(building);
+        legalAgeValidation.execute(building);
         /*for (BuildingAttendantValidation validation : entryValidations) {
             validation.execute(building.get());
         }*/
-        Tenant tenant = Tenant.of(tenantId, tenantName, tenantAge, buildingCalendar.getCurrentDate());
-        building.get().addTenant(tenant);
-        return buildingRepository.save(building.get());
+        return buildingRepository.save(building);
     }
 
-    public Optional<Building> checkOut(String buildingId, String tenantId) {
+    public void checkOut(Long buildingId, Long tenantId) {
         validateBuildingAndTenantId(buildingId, tenantId);
-        Optional<Building> building = buildingRepository.findById(buildingId);
-        building.ifPresent(buildingResponse -> buildingResponse.evictTenant(tenantId));
-        return building;
+        buildingRepository.remove(tenantId);
     }
 
-    private void validateBuildingAndTenantId(String buildingId, String tenantId) {
+    private void validateBuildingAndTenantId(Long buildingId, Long tenantId) {
         checkNotNull(buildingId);
         checkNotNull(tenantId);
     }

@@ -29,13 +29,17 @@ libraryDependencies += "javax.transaction" % "javax.transaction-api" % "1.2"
 // Database
 libraryDependencies += javaJdbc
 libraryDependencies += "mysql" % "mysql-connector-java" % "8.0.12"
-libraryDependencies += "org.jdbi" % "jdbi" % "2.78"
 libraryDependencies += "org.mongodb.morphia" % "morphia" % "1.3.2"
 libraryDependencies += "com.h2database" % "h2" % "1.4.197"
 
 // Testing libraries for dealing with CompletionStage...
 libraryDependencies += "org.assertj" % "assertj-core" % "3.6.2" % Test
 libraryDependencies += "org.awaitility" % "awaitility" % "2.0.0" % Test
+
+//JDBC (JDBI)
+libraryDependencies += javaJdbc
+libraryDependencies += "org.jdbi" % "jdbi3-core" % "3.0.0"
+libraryDependencies += "org.jdbi" % "jdbi3-sqlobject" % "3.0.0"
 
 // Make verbose tests
 testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))

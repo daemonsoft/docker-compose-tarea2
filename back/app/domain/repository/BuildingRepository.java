@@ -8,6 +8,7 @@ public interface BuildingRepository {
 
     Optional<Building> save(Building building);
 
-    Optional<Building> findById(String id);
+    Optional<Building> findById(Long id);
 
+    void remove(Long tenantId);
 }

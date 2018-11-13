@@ -1,5 +1,5 @@
 package infrastructure.database.mongo;
-
+/*
 import domain.entity.Building;
 import domain.entity.Tenant;
 import domain.repository.BuildingRepository;
@@ -46,3 +46,4 @@ public class MongoDbBuildingRepository implements BuildingRepository {
         return new TenantDocument(tenant.getId(), tenant.getName(), tenant.getAge(), tenant.getEntryDate());
     }
 }
+*/

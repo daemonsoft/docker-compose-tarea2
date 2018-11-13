@@ -4,7 +4,7 @@
 
 # An example controller showing a sample home page
 GET     /                            infrastructure.restcontroller.BuildingAttendantRestController.index
-GET     /:buildingId                 infrastructure.restcontroller.BuildingAttendantRestController.getById(buildingId: String)
+GET     /:buildingId                 infrastructure.restcontroller.BuildingAttendantRestController.getById(buildingId: Long)
 
 POST    /                            infrastructure.restcontroller.BuildingAttendantRestController.enterTenant
 
