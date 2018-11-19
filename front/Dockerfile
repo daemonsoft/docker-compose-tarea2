@@ -1,5 +1,5 @@
 FROM node:8.12.0-alpine
-WORKDIR /app
+WORKDIR /src
 COPY . .
 EXPOSE 4200
 RUN npm install 
